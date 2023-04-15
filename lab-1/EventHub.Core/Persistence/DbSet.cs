@@ -1,4 +1,4 @@
-﻿namespace EventHub.Utils.Persistence;
+﻿namespace EventHub.Core.Persistence;
 
 public sealed class DbSet<TEntity>  where TEntity : class
 {
