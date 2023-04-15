@@ -8,6 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\EventHub.Business\EventHub.Business.csproj" />
       <ProjectReference Include="..\EventHub.Utils\EventHub.Utils.csproj" />
     </ItemGroup>
 

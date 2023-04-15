@@ -10,6 +10,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\EventHub.Business\EventHub.Business.csproj" />
+      <ProjectReference Include="..\EventHub.Infrastructure\EventHub.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>
