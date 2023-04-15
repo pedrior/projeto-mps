@@ -1,7 +1,7 @@
 ﻿using EventHub.Business.Controls;
 using EventHub.Business.Entities.Users;
 using EventHub.Infrastructure.Persistence;
-using EventHub.Utils.Exceptions;
+using EventHub.Core.Exceptions;
 
 var userControl = new UserControl(new DataContext());
 
