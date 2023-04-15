@@ -1,4 +1,4 @@
-﻿namespace EventHub.Utils.Exceptions;
+﻿namespace EventHub.Core.Exceptions;
 
 public abstract class ValidationException : Exception
 {

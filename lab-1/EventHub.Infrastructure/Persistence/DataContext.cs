@@ -1,6 +1,6 @@
 ﻿using EventHub.Business.Data;
 using EventHub.Business.Entities.Users;
-using EventHub.Utils.Persistence;
+using EventHub.Core.Persistence;
 
 namespace EventHub.Infrastructure.Persistence;
 

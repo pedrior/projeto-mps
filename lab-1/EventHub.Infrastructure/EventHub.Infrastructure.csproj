@@ -9,7 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\EventHub.Business\EventHub.Business.csproj" />
-      <ProjectReference Include="..\EventHub.Utils\EventHub.Utils.csproj" />
+      <ProjectReference Include="..\EventHub.Core\EventHub.Core.csproj" />
     </ItemGroup>
 
 </Project>

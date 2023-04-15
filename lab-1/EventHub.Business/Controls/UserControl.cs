@@ -1,7 +1,7 @@
 ﻿using EventHub.Business.Data;
 using EventHub.Business.Entities.Users;
 using EventHub.Business.Validators;
-using EventHub.Utils.Exceptions;
+using EventHub.Core.Exceptions;
 
 namespace EventHub.Business.Controls;
 

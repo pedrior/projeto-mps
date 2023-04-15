@@ -1,4 +1,4 @@
-﻿namespace EventHub.Utils.Persistence;
+﻿namespace EventHub.Core.Persistence;
 
 public abstract class DbContext
 {

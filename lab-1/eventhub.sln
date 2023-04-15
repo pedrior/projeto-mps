@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHub.Business", "EventH
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHub.Infrastructure", "EventHub.Infrastructure\EventHub.Infrastructure.csproj", "{C0D4741E-5FD9-497C-8448-4981D289C1F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHub.Utils", "EventHub.Utils\EventHub.Utils.csproj", "{D78A693D-163E-4044-8F0D-283C608B59B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHub.Core", "EventHub.Core\EventHub.Core.csproj", "{D78A693D-163E-4044-8F0D-283C608B59B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHub.View", "EventHub.View\EventHub.View.csproj", "{B2F0CF4D-B59F-4D13-911C-FAB1D4F607DA}"
 EndProject

@@ -1,4 +1,4 @@
-﻿namespace EventHub.Utils.Entities;
+﻿namespace EventHub.Core.Entities;
 
 public abstract class Entity<TId> : Entity, IEquatable<Entity<TId>>
 {

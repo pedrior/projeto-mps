@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using EventHub.Utils.Entities;
+using EventHub.Core.Entities;
 
 namespace EventHub.Business.Entities.Users;
 
