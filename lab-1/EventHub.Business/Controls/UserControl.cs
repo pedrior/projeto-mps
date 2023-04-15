@@ -1,20 +1,20 @@
-﻿using EventHub.Business.Entities.Users;
+﻿using EventHub.Business.Data;
+using EventHub.Business.Entities.Users;
 using EventHub.Business.Validators;
-using EventHub.Infrastructure.Persistence;
 using EventHub.Utils.Exceptions;
 
 namespace EventHub.Business.Controls;
 
 public sealed class UserControl
 {
-    private readonly MemoryCollection<User, UserId> users;
-
-    public UserControl(MemoryCollection<User, UserId> users)
-    {
-        this.users = users;
-    }
+    private readonly IDataContext context;
     
-    public IEnumerable<User> GetUsers() => users.GetAll();
+    public UserControl(IDataContext context)
+    {
+        this.context = context;
+    }
+
+    public IEnumerable<User> GetUsers() => context.Users.AsEnumerable();
     
     public void CreateUser(User user)
     {
@@ -47,16 +47,18 @@ public sealed class UserControl
                                            "and can only contain letters, spaces, periods and apostrophes.");
         }
 
-        if (users.Exists(u => u.Email.Equals(user.Email, StringComparison.OrdinalIgnoreCase)))
+        if (context.Users.AsQueryable()
+            .Any(u => u.Email.Equals(user.Email, StringComparison.OrdinalIgnoreCase)))
         {
             throw new DuplicateUserEmailException("The email address is already in use.");
         }
         
-        if (users.Exists(u => u.Username.Equals(user.Username, StringComparison.OrdinalIgnoreCase)))
+        if (context.Users.AsQueryable()
+            .Any(u => u.Username.Equals(user.Username, StringComparison.OrdinalIgnoreCase)))
         {
             throw new DuplicateUserUsernameException("The username is already in use.");
         }
 
-        users.Add(user);
+        context.Users.Add(user);
     }
 }

@@ -3,8 +3,7 @@ using EventHub.Business.Entities.Users;
 using EventHub.Infrastructure.Persistence;
 using EventHub.Utils.Exceptions;
 
-var userCollection = new MemoryCollection<User, UserId>();
-var userControl = new UserControl(userCollection);
+var userControl = new UserControl(new DataContext());
 
 int choice;
 
