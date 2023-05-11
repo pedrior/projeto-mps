@@ -1,7 +1,9 @@
-﻿using EventHub.Business.Controls;
+using EventHub.Business.Controls;
 using EventHub.Business.Entities.Users;
 using EventHub.Infrastructure.Persistence;
 using EventHub.Core.Exceptions;
+using EventHub.Business.Entities.Categories;
+
 
 var userControl = new UserControl(new DataContext());
 
@@ -15,7 +17,11 @@ do
     Console.WriteLine("Select an option:");
     Console.WriteLine("1. Create user");
     Console.WriteLine("2. List users");
-    Console.WriteLine("3. Exit");
+    Console.WriteLine("3. Create Categories");
+    Console.WriteLine("4. List Categories");
+    Console.WriteLine("5. Update Categories");
+    Console.WriteLine("6. Delete Categories");
+    Console.WriteLine("7. Exit");
 
     choice = int.Parse(Console.ReadLine() ?? "0");
 
@@ -27,8 +33,15 @@ do
         case 2:
             ListUsers();
             break;
+        case 3:
+            CreateCategory();
+            break;
+        case 4:
+            ListCategories();
+            break;
+        
     }
-} while (choice is not 3);
+} while (choice is not 5);
 
 Console.WriteLine("Press any key to exit...");
 Console.ReadLine();
@@ -139,6 +152,59 @@ void ListUsers()
     Console.WriteLine("\nPress any key to go back...");
     Console.ReadLine();
 }
+
+void CreateCategory()
+    {
+    Console.Clear();
+    Console.WriteLine("Adding category...\n");
+
+    Console.WriteLine("Enter name:");
+    var name = Console.ReadLine();
+
+    Console.WriteLine("Enter description:");
+    var description = Console.ReadLine();
+
+    var category = new Category
+    {
+        Name = name ?? string.Empty,
+        Description = description ?? string.Empty
+    };
+
+    try
+    {
+        CategoryRepository.Add(category);
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("\nCategory added successfully!\n");
+        Console.ResetColor();
+        Console.WriteLine("\nPress any key to go back...");
+        Console.ReadLine();
+    }
+    catch (Exception e)
+    {
+        LogError("Could not add category:", e.Message);
+    }
+}
+
+void ListCategories()
+{
+    var categoryRepository = new CategoryRepository();
+
+    Console.Clear();
+    var categories = categoryRepository.GetAll();
+
+    Console.WriteLine(categories.Any() ? "Listing categories...\n" : "No categories found.\n");
+
+    foreach (var category in categories)
+    {
+        Console.WriteLine($"Id: {category.Id.Value}, Name: {category.Name}, Description: {category.Description}");
+    }
+
+    Console.WriteLine("\nPress any key to go back...");
+    Console.ReadLine();
+}
+
+
 
 void LogError(string title, string message)
 {
