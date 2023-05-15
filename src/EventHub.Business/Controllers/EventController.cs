@@ -3,7 +3,6 @@ using EventHub.Business.Validations;
 using EventHub.Entities;
 using EventHub.Infrastructure.Persistence.Context;
 using EventHub.Infrastructure.Persistence.Repositories;
-using FluentValidation;
 
 namespace EventHub.Business.Controllers;
 
@@ -11,7 +10,7 @@ public sealed class EventController
 {
     private readonly DbContext dbContext;
     private readonly IEventRepository eventRepository;
-    private readonly IValidator<Event> eventValidator;
+    private readonly Validator<Event> eventValidator;
 
     public EventController()
     {

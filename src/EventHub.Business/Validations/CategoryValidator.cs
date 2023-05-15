@@ -1,26 +1,17 @@
 ﻿using EventHub.Entities;
-using FluentValidation;
 
 namespace EventHub.Business.Validations;
 
-internal sealed class CategoryValidator : AbstractValidator<Category>
+internal sealed class CategoryValidator : Validator<Category>
 {
     public CategoryValidator()
     {
-        RuleFor(x => x.Id)
-            .Must(x => x != Guid.Empty)
-            .WithMessage("Must be a valid ID");
+        NewRule(x => x.Id != Guid.Empty, "Must be a valid ID");
 
-        RuleFor(x => x.Name)
-            .NotEmpty()
-            .WithMessage("Name is required")
-            .Length(min: 2, max: 50)
-            .WithMessage("Name must be between 2 and 50 characters");
+        NewRule(x => !string.IsNullOrEmpty(x.Name), "Name is required");
+        NewRule(x => x.Name.Length is >= 2 and <= 50, "Name must be between 2 and 50 characters");
 
-        RuleFor(x => x.Description)
-            .NotEmpty()
-            .WithMessage("Description is required")
-            .Length(min: 20, max: 200)
-            .WithMessage("Description must be between 20 and 200 characters");
+        NewRule(x => !string.IsNullOrEmpty(x.Description), "Description is required");
+        NewRule(x => x.Description.Length is >= 2 and <= 50, "Description must be between 20 and 200 characters");
     }
 }
