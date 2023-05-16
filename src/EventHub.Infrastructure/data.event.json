@@ -1,0 +1,28 @@
+﻿{
+  "$type": "System.Collections.Generic.HashSet`1[[EventHub.Entities.Event, EventHub.Entities]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "EventHub.Entities.Event, EventHub.Entities",
+      "OwnerId": "d68b24a5-7755-46b6-8851-6e6b2e1bc816",
+      "CategoryId": "a9eb485b-a27d-4e13-8f8b-d1183ec9db15",
+      "Name": "Encontro de desenvolvedores .NET",
+      "Description": "Primeiro encontro de desenvolvedores .NET da comunidade de São Paulo e região. O evento será realizado no auditório da Microsoft Brasil.",
+      "StartDate": "2023-06-14T13:22:57.9861636+00:00",
+      "EndDate": "2023-06-19T13:22:57.9861636+00:00",
+      "Capacity": 50,
+      "Status": 0,
+      "Subscriptions": {
+        "$type": "System.Collections.ObjectModel.ReadOnlyCollection`1[[EventHub.Entities.EventSubscription, EventHub.Entities]], System.Private.CoreLib",
+        "$values": [
+          {
+            "$type": "EventHub.Entities.EventSubscription, EventHub.Entities",
+            "EventId": "3c668449-17fe-403d-a87e-89e9b88ac89b",
+            "SubscriberId": "1d761f91-be42-4140-8ec7-07a16dbec391",
+            "SubscribedAt": "2023-05-14T13:24:52.7780943+00:00"
+          }
+        ]
+      },
+      "Id": "3c668449-17fe-403d-a87e-89e9b88ac89b"
+    }
+  ]
+}

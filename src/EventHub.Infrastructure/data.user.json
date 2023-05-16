@@ -1,0 +1,45 @@
+﻿{
+  "$type": "System.Collections.Generic.HashSet`1[[EventHub.Entities.User, EventHub.Entities]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "EventHub.Entities.BasicUser, EventHub.Entities",
+      "Email": "john@doe.com",
+      "Password": "john123456",
+      "FirstName": "John",
+      "LastName": "Doe",
+      "IsAdmin": false,
+      "FullName": "John Doe",
+      "Id": "d68b24a5-7755-46b6-8851-6e6b2e1bc816"
+    },
+    {
+      "$type": "EventHub.Entities.BasicUser, EventHub.Entities",
+      "Email": "robert@walker.com",
+      "Password": "robertRR8874",
+      "FirstName": "Robert",
+      "LastName": "Walker",
+      "IsAdmin": false,
+      "FullName": "Robert Walker",
+      "Id": "da05ed44-22aa-4f11-9640-f05b677000f2"
+    },
+    {
+      "$type": "EventHub.Entities.BasicUser, EventHub.Entities",
+      "Email": "amelia@clinton.com",
+      "Password": "ameclint123",
+      "FirstName": "Amelia",
+      "LastName": "Clinton",
+      "IsAdmin": false,
+      "FullName": "Amelia Clinton",
+      "Id": "1d761f91-be42-4140-8ec7-07a16dbec391"
+    },
+    {
+      "$type": "EventHub.Entities.BasicUser, EventHub.Entities",
+      "Email": "carla@hugh.com",
+      "Password": "hughcaa44447",
+      "FirstName": "Carla",
+      "LastName": "Hugh",
+      "IsAdmin": false,
+      "FullName": "Carla Hugh",
+      "Id": "f6d4b98b-b9ca-47bd-8d69-66a82aaca360"
+    }
+  ]
+}

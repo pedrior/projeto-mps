@@ -1,0 +1,65 @@
+﻿{
+  "$type": "System.Collections.Generic.HashSet`1[[EventHub.Entities.Category, EventHub.Entities]], System.Private.CoreLib",
+  "$values": [
+    {
+      "$type": "EventHub.Entities.Category, EventHub.Entities",
+      "Name": "Eventos de Networking",
+      "Description": "Encontros profissionais destinados a estabelecer e fortalecer contatos comerciais, expandir redes de relacionamento e promover parcerias.",
+      "Id": "a9eb485b-a27d-4e13-8f8b-d1183ec9db15"
+    },
+    {
+      "$type": "EventHub.Entities.Category, EventHub.Entities",
+      "Name": "Conferências",
+      "Description": "Eventos que reúnem especialistas e profissionais de um determinado setor para discutir tópicos relevantes e compartilhar conhecimentos.",
+      "Id": "ce2df8a0-5aff-4ec3-9405-c039c094f0e2"
+    },
+    {
+      "$type": "EventHub.Entities.Category, EventHub.Entities",
+      "Name": "Feiras e Exposições",
+      "Description": "Eventos que apresentam produtos, serviços e inovações de diversas indústrias, proporcionando oportunidades de negócios e networking.",
+      "Id": "a9ef7c6c-7ea0-4df5-bdba-6c255c89bfc3"
+    },
+    {
+      "$type": "EventHub.Entities.Category, EventHub.Entities",
+      "Name": "Workshops e Treinamentos",
+      "Description": "Eventos práticos e interativos que oferecem treinamentos específicos em áreas profissionais ou habilidades técnicas.",
+      "Id": "8816d460-1f44-40e1-bff0-fb4de1099989"
+    },
+    {
+      "$type": "EventHub.Entities.Category, EventHub.Entities",
+      "Name": "Seminários",
+      "Description": "Encontros educacionais que promovem debates e apresentações sobre temas específicos, visando a troca de conhecimentos e experiências.",
+      "Id": "e07cdde5-0fbd-4ce0-af3c-9f057aba3689"
+    },
+    {
+      "$type": "EventHub.Entities.Category, EventHub.Entities",
+      "Name": "Festivais e Shows",
+      "Description": "Eventos culturais e artísticos que oferecem performances ao vivo, música, teatro, dança e entretenimento para o público.",
+      "Id": "7738ddf4-90be-4de6-adc5-482a243a13bf"
+    },
+    {
+      "$type": "EventHub.Entities.Category, EventHub.Entities",
+      "Name": "Eventos Esportivos",
+      "Description": "Competições e encontros esportivos que reúnem atletas e entusiastas de diferentes modalidades esportivas.",
+      "Id": "73f26ed2-a75e-40be-a5cc-c56f389f9c64"
+    },
+    {
+      "$type": "EventHub.Entities.Category, EventHub.Entities",
+      "Name": "Eventos Sociais",
+      "Description": "Celebrações e encontros sociais, como casamentos, festas de aniversário, formaturas e eventos de caridade.",
+      "Id": "9ed75a9d-0f69-421e-acf1-34425dc54628"
+    },
+    {
+      "$type": "EventHub.Entities.Category, EventHub.Entities",
+      "Name": "Feiras de Emprego e Recrutamento",
+      "Description": "Eventos voltados para a conexão entre empresas e profissionais em busca de oportunidades de emprego ou estágio.",
+      "Id": "4257c07a-2e34-4656-988f-46c6e768d053"
+    },
+    {
+      "$type": "EventHub.Entities.Category, EventHub.Entities",
+      "Name": "Concertos e Performances Musicais",
+      "Description": "Apresentações ao vivo de músicos, bandas ou orquestras, abrangendo diferentes estilos musicais e gêneros.",
+      "Id": "5d63a538-50a2-45df-8fd2-35f86594e79d"
+    }
+  ]
+}
