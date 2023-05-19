@@ -1,6 +1,7 @@
 using EventHub.Business.Exceptions;
 using EventHub.Business.Validations;
 using EventHub.Entities;
+using EventHub.Infrastructure.Authentication;
 using EventHub.Infrastructure.Persistence.Context;
 using EventHub.Infrastructure.Persistence.Repositories;
 
@@ -11,12 +12,22 @@ public sealed class UserController
     private readonly DbContext dbContext;
     private readonly IUserRepository userRepository;
     private readonly Validator<User> userValidator;
+    private readonly IAuthentication authentication;
 
     public UserController()
     {
         dbContext = new DbFactory().GetDefaultContext();
         userRepository = new UserRepository(dbContext);
         userValidator = new UserValidator();
+        authentication = new BasicAuthentication(userRepository);
+    }
+
+    public Guid SignIn(string email, string password)
+    {
+        var user = authentication.Authenticate(email, password) ??
+               throw new AuthenticationException("Invalid login or password");
+        
+        return user.Id;
     }
 
     public User GetUserById(Guid userId) => userRepository.GetById(userId)
