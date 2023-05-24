@@ -6,11 +6,12 @@ namespace EventHub.Presentation.Views;
 
 public sealed class UserListView : NavigationView
 {
-    private readonly UserController userController = new();
     private readonly MenuBuilder menuBuilder = new();
+    private readonly UserController userController;
     
-    public UserListView(IView ancestor) : base(ancestor)
+    public UserListView(IView ancestor, UserController userController) : base(ancestor)
     {
+        this.userController = userController;
     }
 
     public override string Title => "Users";

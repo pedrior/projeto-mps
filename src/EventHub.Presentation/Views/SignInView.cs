@@ -7,11 +7,12 @@ namespace EventHub.Presentation.Views;
 
 public sealed class SignInView : NavigationView
 {
-    private readonly UserController userController = new();
     private readonly MenuBuilder menuBuilder = new();
+    private readonly UserController userController;
     
-    public SignInView(IView ancestor) : base(ancestor)
+    public SignInView(IView ancestor, UserController userController) : base(ancestor)
     {
+        this.userController = userController;
     }
     
     public override string Title => "Sign in";
