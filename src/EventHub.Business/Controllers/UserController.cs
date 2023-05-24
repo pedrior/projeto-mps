@@ -1,4 +1,6 @@
 using EventHub.Business.Exceptions;
+using EventHub.Business.Reporting;
+using EventHub.Business.Reporting.UserStatistics;
 using EventHub.Business.Validations;
 using EventHub.Entities;
 using EventHub.Infrastructure.Authentication;
@@ -14,6 +16,8 @@ public sealed class UserController
     private readonly Validator<User> userValidator;
     private readonly IAuthentication authentication;
 
+    private readonly List<IUserStatisticUnit> userStatisticUnits = new();
+
     public UserController()
     {
         dbContext = new DbFactory().GetDefaultContext();
@@ -22,11 +26,19 @@ public sealed class UserController
         authentication = new BasicAuthentication(userRepository);
     }
 
+    public void GenerateHtmlUserStatisticsReport() =>
+        UserStatisticsReportFactory.CreateReport(ReportFormat.Html).Generate(userStatisticUnits);
+
+    public void GeneratePdfUserStatisticsReport() =>
+        UserStatisticsReportFactory.CreateReport(ReportFormat.Pdf).Generate(userStatisticUnits);
+
     public Guid SignIn(string email, string password)
     {
         var user = authentication.Authenticate(email, password) ??
-               throw new AuthenticationException("Invalid login or password");
-        
+                   throw new AuthenticationException("Invalid login or password");
+
+        userStatisticUnits.Add(new UserLoginStatisticUnit(user.FullName));
+
         return user.Id;
     }
 
@@ -75,5 +87,7 @@ public sealed class UserController
 
         userRepository.Add(user);
         dbContext.SaveChanges();
+
+        userStatisticUnits.Add(new UserLoginStatisticUnit(user.FullName));
     }
 }
