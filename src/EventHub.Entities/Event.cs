@@ -20,7 +20,7 @@ public sealed class Event : Entity
 
     public required int Capacity { get; init; }
 
-    public EventStatus Status { get; init; } = EventStatus.Draft;
+    public EventStatus Status { get; set; } = EventStatus.Draft;
 
     public IReadOnlyList<EventSubscription> Subscriptions => subscriptions.AsReadOnly();
 
