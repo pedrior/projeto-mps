@@ -13,7 +13,8 @@ public sealed class EventFacade
     private readonly UserController userController;
     private readonly EventController eventController;
     private readonly CategoryController categoryController;
-    private readonly INotificationDispatcher[] notificationDispatchers;
+    private readonly List<INotificationDispatcher> notificationDispatchers;
+    private readonly List<IEventObserver> observables = new();
 
     [SuppressMessage("ReSharper", "PrivateFieldCanBeConvertedToLocalVariable")]
     private readonly INotificationDispatcherFactory notificationDispatcherFactory;
@@ -25,7 +26,7 @@ public sealed class EventFacade
         categoryController = new CategoryController();
         notificationDispatcherFactory = new NotificationDispatcherFactory();
 
-        notificationDispatchers = new[]
+        notificationDispatchers = new List<INotificationDispatcher>
         {
             notificationDispatcherFactory.CreateNotificationDispatcher(NotificationType.Email),
             notificationDispatcherFactory.CreateNotificationDispatcher(NotificationType.Push)
@@ -59,49 +60,36 @@ public sealed class EventFacade
     public IEnumerable<Event> SearchByCategory(Category category) =>
         eventController.GetAllEvents().Where(e => e.CategoryId == category.Id);
 
-    // Metodos do evento : start, end, publish e cancel
     public void StartEvent(Event ev)
     {
         ev.Status = EventStatus.Started;
         NotifyOnEventStart(ev);
     }
+
     public void EndEvent(Event ev)
     {
         ev.Status = EventStatus.Ended;
         NotifyOnEventEnd(ev);
     }
+
     public void PublishEvent(Event ev)
     {
         ev.Status = EventStatus.Published;
         NotifyOnEventPublish(ev);
     }
+
     public void CancelEvent(Event ev)
     {
         ev.Status = EventStatus.Cancelled;
         NotifyOnEventCancelled(ev);
     }
 
-    private void DispatchNotification(INotification notification)
-    {
-        foreach (var dispatcher in notificationDispatchers)
-        {
-            dispatcher.Dispatch(notification);
-        }
-    }
+    private void DispatchNotification(INotification notification) =>
+        notificationDispatchers.ForEach(n => n.Dispatch(notification));
 
-    private List<IEventObserver> observables = new List<IEventObserver>();
+    public void AttachEventObserver(IEventObserver observer) => observables.Add(observer);
 
-    public void AttachEventObserver(IEventObserver observer)
-    {
-        observables.Add(observer);
-    }
-
-    public void DetachEventObserver(IEventObserver observer)
-    {
-        observables.Remove(observer);
-    }
-
-   // Metodos de notificação do observer
+    public void DetachEventObserver(IEventObserver observer) => observables.Remove(observer);
 
     private void NotifyOnEventStart(Event ev)
     {
