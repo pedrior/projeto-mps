@@ -1,4 +1,4 @@
-﻿namespace EventHub.Presentation.Views.Internal;
+﻿namespace EventHub.Presentation.Common.Views;
 
 public interface INavigationView : IView
 {

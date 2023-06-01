@@ -1,6 +1,6 @@
-﻿using EventHub.Presentation.Views.Internal;
+﻿using EventHub.Presentation.Common.Views;
 
-namespace EventHub.Presentation;
+namespace EventHub.Presentation.Common;
 
 public static class Application
 {

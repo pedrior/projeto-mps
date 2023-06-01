@@ -1,34 +1,25 @@
-﻿using EventHub.Business.Controllers;
-using EventHub.Presentation.Views.Controls;
-using EventHub.Presentation.Views.Internal;
+﻿using EventHub.Presentation.Common;
+using EventHub.Presentation.Common.Controls;
+using EventHub.Presentation.Common.Views;
+using EventHub.Presentation.Views.Account;
 
 namespace EventHub.Presentation.Views;
 
 public sealed class MainView : View
 {
-    private readonly UserController userController = new();
     private readonly MenuBuilder menuBuilder = new();
 
     public override string Title => "Welcome to EventHub!";
 
-    protected override Menu CreateMenu()
+    protected override Menu BuildMenu()
     {
         return menuBuilder
-            .AddMenuItem("Sign in", GoToSignInView)
-            .AddMenuItem("Sign up", GoToSignUpView)
-            .AddMenuItem("List users", GoToUserListView)
-            .AddMenuItem("Statistics", GoToStatisticsView)
-            .AddMenuItem("Exit", Exit)
+            .AddMenuItem("Account", GoToAccount)
+            .AddMenuItem("Quit", Quit)
             .Build();
     }
 
-    private void GoToSignInView() => Navigator.Go(new SignInView(this, userController));
+    private void GoToAccount() => Navigator.Go(new AccountView(this));
 
-    private void GoToSignUpView() => Navigator.Go(new SignUpView(this, userController));
-
-    private void GoToUserListView() => Navigator.Go(new UserListView(this, userController));
-    
-    private void GoToStatisticsView() => Navigator.Go(new StatisticsView(this, userController));
-
-    private static void Exit() => Application.Shutdown();
+    private static void Quit() => Application.Shutdown();
 }

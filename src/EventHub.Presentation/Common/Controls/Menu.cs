@@ -1,11 +1,26 @@
-﻿namespace EventHub.Presentation.Views.Controls;
+﻿namespace EventHub.Presentation.Common.Controls;
 
 public class Menu
 {
     private readonly List<MenuItem> items = new();
 
-    public void AddMenuItem(MenuItem item) => items.Add(item);
-    
+    public void AddMenuItem(MenuItem item, int? position = null)
+    {
+        if (position.HasValue)
+        {
+            if (position.Value < 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(position), "Position cannot be negative.");
+            }
+
+            items.Insert(position.Value, item);
+        }
+        else
+        {
+            items.Add(item);
+        }
+    }
+
     public void Display()
     {
         for (var i = 0; i < items.Count; i++)

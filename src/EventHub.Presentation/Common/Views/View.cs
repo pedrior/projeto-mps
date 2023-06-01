@@ -1,6 +1,6 @@
-﻿using EventHub.Presentation.Views.Controls;
+﻿using EventHub.Presentation.Common.Controls;
 
-namespace EventHub.Presentation.Views.Internal;
+namespace EventHub.Presentation.Common.Views;
 
 public abstract class View : IView
 {
@@ -8,22 +8,32 @@ public abstract class View : IView
 
     public abstract string Title { get; }
 
-    protected abstract Menu CreateMenu();
+    protected abstract Menu BuildMenu();
     
-    protected virtual void CreateContent()
+    protected virtual void BuildContent()
     {
     }
+    
+    protected void Reshow()
+    {
+        Console.Clear();
+        
+        InvalidateMenu();
+        Show();
+    }
+    
+    public void InvalidateMenu() => menu = null;
 
     public void Show()
     {
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine($"{Title}\n");
         Console.ResetColor();
-
-        CreateContent();
         
-        menu ??= CreateMenu();
-
+        BuildContent();
+        
+        menu ??= BuildMenu();
+        
         while (true)
         {
             menu.Display();

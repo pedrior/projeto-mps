@@ -1,10 +1,10 @@
-﻿namespace EventHub.Presentation.Views.Controls;
+﻿namespace EventHub.Presentation.Common.Controls;
 
 public sealed class MenuBuilder
 {
     private readonly Menu menu = new();
 
-    public MenuBuilder AddMenuItem(string title, Action action)
+    public MenuBuilder AddMenuItem(string title, Action action, int? position = null)
     {
         var item = new MenuItem
         {
@@ -12,7 +12,7 @@ public sealed class MenuBuilder
             Action = action
         };
         
-        menu.AddMenuItem(item);
+        menu.AddMenuItem(item, position);
         return this;
     }
     

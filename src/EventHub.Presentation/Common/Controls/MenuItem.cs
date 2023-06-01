@@ -1,4 +1,4 @@
-﻿namespace EventHub.Presentation.Views.Controls;
+﻿namespace EventHub.Presentation.Common.Controls;
 
 public sealed class MenuItem
 {

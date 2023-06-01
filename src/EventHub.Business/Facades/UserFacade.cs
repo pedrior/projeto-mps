@@ -63,6 +63,12 @@ public sealed class UserFacade
     }
 
     public void Logout() => LoggedInUserId = Guid.Empty;
+    
+    public void DeleteLoggedUser()
+    {
+        userController.DeleteUserById(LoggedInUserId);
+        Logout();
+    }
 
     public User? GetCurrentUser() => IsLoggedIn ? userController.GetUserById(LoggedInUserId) : null;
     
