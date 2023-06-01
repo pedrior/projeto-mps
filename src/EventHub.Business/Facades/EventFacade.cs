@@ -52,6 +52,9 @@ public sealed class EventFacade
         var subscriberIds = @event.Subscriptions.Select(s => s.SubscriberId);
         return subscriberIds.Select(subscriberId => userController.GetUserById(subscriberId));
     }
+    
+    public bool IsUserSubscribed(Event @event, User user) =>
+        @event.Subscriptions.Any(s => s.SubscriberId == user.Id);
 
     public IDictionary<Category, IEnumerable<Event>> GroupEventsByCategory() =>
         categoryController.GetAllCategories()
@@ -83,6 +86,8 @@ public sealed class EventFacade
         ev.Status = EventStatus.Cancelled;
         NotifyOnEventCancelled(ev);
     }
+    
+    public void DeleteEvent(Event @event) => eventController.DeleteEventById(@event.Id);
 
     private void DispatchNotification(INotification notification) =>
         notificationDispatchers.ForEach(n => n.Dispatch(notification));
@@ -122,4 +127,6 @@ public sealed class EventFacade
             observer.OnCancelled(ev);
         }
     }
+
+    public IEnumerable<Event> GetAllEvents() => eventController.GetAllEvents();
 }

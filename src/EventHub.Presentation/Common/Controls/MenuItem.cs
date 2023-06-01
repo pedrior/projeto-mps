@@ -2,7 +2,21 @@
 
 public sealed class MenuItem
 {
-    public required string Title { get; init; }
+    private MenuItem()
+    {
+    }
+
+    public string Title { get; init; } = null!;
     
-    public required Action Action { get; init; }
+    public bool IsSeparator { get; init; }
+
+    public Action Action { get; init; } = null!;
+    
+    public static MenuItem Separator() => new() { IsSeparator = true };
+    
+    public static MenuItem Create(string title, Action action) => new()
+    {
+        Title = title,
+        Action = action
+    };
 }

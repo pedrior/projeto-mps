@@ -6,13 +6,13 @@ public sealed class MenuBuilder
 
     public MenuBuilder AddMenuItem(string title, Action action, int? position = null)
     {
-        var item = new MenuItem
-        {
-            Title = title,
-            Action = action
-        };
-        
-        menu.AddMenuItem(item, position);
+        menu.AddMenuItem(MenuItem.Create(title, action), position);
+        return this;
+    }
+    
+    public MenuBuilder AddSeparator(int? position = null)
+    {
+        menu.AddSeparator(position);
         return this;
     }
     

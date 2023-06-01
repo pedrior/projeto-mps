@@ -20,11 +20,22 @@ public class Menu
             items.Add(item);
         }
     }
+    
+    public void AddSeparator(int? position = null)
+    {
+        AddMenuItem(MenuItem.Separator(), position);
+    }
 
     public void Display()
     {
         for (var i = 0; i < items.Count; i++)
         {
+            if (items[i].IsSeparator)
+            {
+                Console.WriteLine("".PadRight(50, '-'));
+                continue;
+            }
+            
             Console.WriteLine($"{i + 1}. {items[i].Title}");
         }
     }

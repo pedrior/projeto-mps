@@ -16,6 +16,36 @@ internal static class ConsoleHelper
             Console.WriteLine("Please enter a value.");
         }
     }
+    
+    public static int ReadRequiredInt(string prompt)
+    {
+        while (true)
+        {
+            Console.Write($"{prompt}: ");
+            var input = Console.ReadLine();
+            if (int.TryParse(input, out var number))
+            {
+                return number;
+            }
+
+            Console.WriteLine("Please enter a valid number.");
+        }
+    }
+    
+    public static DateTimeOffset ReadRequiredDateTime(string prompt)
+    {
+        while (true)
+        {
+            Console.Write($"{prompt}: ");
+            var input = Console.ReadLine();
+            if (DateTimeOffset.TryParse(input, out var dateTime))
+            {
+                return dateTime;
+            }
+
+            Console.WriteLine("Please enter a valid date and time.");
+        }
+    } 
 
     public static bool ReadYesNo(string prompt)
     {

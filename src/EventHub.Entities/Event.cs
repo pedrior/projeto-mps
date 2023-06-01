@@ -8,17 +8,17 @@ public sealed class Event : Entity
 
     public required Guid OwnerId { get; init; }
 
-    public required Guid CategoryId { get; init; }
+    public required Guid CategoryId { get; set; }
 
-    public required string Name { get; init; }
+    public required string Name { get; set; }
 
-    public required string Description { get; init; }
+    public required string Description { get; set; }
 
-    public required DateTimeOffset StartDate { get; init; }
+    public required DateTimeOffset StartDate { get; set; }
 
-    public required DateTimeOffset EndDate { get; init; }
+    public required DateTimeOffset EndDate { get; set; }
 
-    public required int Capacity { get; init; }
+    public required int Capacity { get; set; }
 
     public EventStatus Status { get; set; } = EventStatus.Draft;
 
