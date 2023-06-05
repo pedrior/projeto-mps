@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using EventHub.Business.Controllers;
 using EventHub.Business.Controllers.Notifications;
+using EventHub.Business.Exceptions;
 using EventHub.Business.Facades.commands;
 using EventHub.Entities;
 using EventHub.Infrastructure.Services.Notification;
@@ -127,4 +128,17 @@ public sealed class EventFacade
     }
 
     public IEnumerable<Event> GetAllEvents() => eventController.GetAllEvents();
+
+    public bool UndoDeleteEvent()
+    {
+        try
+        {
+            eventController.UndoDelete();
+            return true;
+        }
+        catch (UndoNotSupportedException)
+        {
+            return false;
+        }
+    }
 }

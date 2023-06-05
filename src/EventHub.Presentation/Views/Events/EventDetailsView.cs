@@ -11,6 +11,8 @@ public sealed class EventDetailsView : NavigationView
     private readonly EventFacade eventFacade = EventFacade.Current;
     private readonly UserFacade userFacade = UserFacade.Current;
     private readonly Event @event;
+    
+    private bool isDeleted;
 
     public EventDetailsView(IView ancestor, Event @event) : base(ancestor)
     {
@@ -34,8 +36,15 @@ public sealed class EventDetailsView : NavigationView
 
         if (IsEventOwnedByCurrentUser)
         {
-            menu.AddMenuItem("Edit", GoToEditEvent)
-                .AddMenuItem("Delete", DeleteEvent);
+            if (isDeleted)
+            {
+                menu.AddMenuItem("Undo deletion", UndoDeletion);
+            }
+            else
+            {
+                menu.AddMenuItem("Edit", GoToEditEvent)
+                    .AddMenuItem("Delete", DeleteEvent);
+            }
 
             return menu.Build();
         }
@@ -57,7 +66,19 @@ public sealed class EventDetailsView : NavigationView
     private void DeleteEvent()
     {
         eventFacade.DeleteEvent(@event);
-        Navigator.Back(this);
+        isDeleted = true;
+        
+        Reshow();
+    }
+
+    private void UndoDeletion()
+    {
+        if (eventFacade.UndoDeleteEvent())
+        {
+            isDeleted = false;
+        }
+        
+        Reshow();
     }
 
     private void UnregisterFromEvent()

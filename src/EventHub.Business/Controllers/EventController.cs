@@ -12,11 +12,14 @@ public sealed class EventController
     private readonly IEventRepository eventRepository;
     private readonly Validator<Event> eventValidator;
 
+    private readonly EventMementoCaretaker eventMementoCaretaker;
+
     public EventController()
     {
         dbContext = new DbFactory().GetDefaultContext();
         eventRepository = new EventRepository(dbContext);
         eventValidator = new EventValidator();
+        eventMementoCaretaker = new EventMementoCaretaker();
     }
 
     public void SubscribeToEvent(Event @event, Guid userId)
@@ -50,7 +53,8 @@ public sealed class EventController
     }
 
     public Event GetEventById(Guid eventId) => eventRepository.FindById(eventId)
-                                               ?? throw new EventNotFoundException($"Event not found with id: {eventId}");
+                                               ?? throw new EventNotFoundException(
+                                                   $"Event not found with id: {eventId}");
 
     public IEnumerable<Event> GetAllEvents() => eventRepository.GetAll();
 
@@ -83,7 +87,24 @@ public sealed class EventController
             throw new EventNotFoundException($"Event not found with id: {eventId}");
         }
 
+        // Create a memento of the event before deleting
+        var memento = new EventMemento(@event);
+
         eventRepository.Delete(@event);
         dbContext.SaveChanges();
+
+        // Push the memento onto the undo stack
+        eventMementoCaretaker.SaveMemento(memento);
+    }
+
+    public void UndoDelete()
+    {
+        var state = eventMementoCaretaker.RestoreMemento();
+        if (state is null)
+        {
+            throw new UndoNotSupportedException("No state to restore");
+        }
+        
+        eventRepository.Add(state.Restore());
     }
 }
