@@ -1,7 +1,7 @@
 ﻿using EventHub.Business.Controllers;
 using EventHub.Entities;
 
-namespace EventHub.Business.Facades;
+namespace EventHub.Business.Facades.commands;
 
 public sealed class GetEventSubscribersCommand : ICommand<Event, IEnumerable<User>>
 {

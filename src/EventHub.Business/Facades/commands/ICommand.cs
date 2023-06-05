@@ -1,4 +1,4 @@
-﻿namespace EventHub.Business.Facades;
+﻿namespace EventHub.Business.Facades.commands;
 
 public interface ICommand
 {

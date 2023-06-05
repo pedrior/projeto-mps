@@ -1,6 +1,6 @@
 ﻿using EventHub.Entities;
 
-namespace EventHub.Business.Facades;
+namespace EventHub.Business.Facades.commands;
 
 public sealed class PublishEventCommand : ICommand<Event>
 {
