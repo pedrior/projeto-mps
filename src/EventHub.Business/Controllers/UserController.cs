@@ -23,7 +23,7 @@ public sealed class UserController
         dbContext = new DbFactory().GetDefaultContext();
         userRepository = new UserRepository(dbContext);
         userValidator = new UserValidator();
-        authentication = new BasicAuthentication(userRepository);
+        authentication = new BasicAuthenticationAdapter(userRepository);
     }
 
     public void GenerateHtmlUserStatisticsReport() =>

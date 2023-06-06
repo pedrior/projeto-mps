@@ -3,11 +3,11 @@ using EventHub.Infrastructure.Persistence.Repositories;
 
 namespace EventHub.Infrastructure.Authentication;
 
-public sealed class BasicAuthentication : IAuthentication
+public sealed class BasicAuthenticationAdapter : IAuthentication
 {
     private readonly IUserRepository userRepository;
 
-    public BasicAuthentication(IUserRepository userRepository)
+    public BasicAuthenticationAdapter(IUserRepository userRepository)
     {
         this.userRepository = userRepository;
     }

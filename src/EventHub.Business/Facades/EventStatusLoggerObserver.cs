@@ -2,7 +2,7 @@
 
 namespace EventHub.Business.Facades;
 
-public class StatusLoggerObserver : IEventObserver
+public class EventStatusLoggerObserver : IEventObserver
 {
     public void OnCancelled(Event ev) => Console.WriteLine($"Event '{ev.Name}' has been cancelled.");
 

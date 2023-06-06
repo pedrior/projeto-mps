@@ -3,11 +3,11 @@ using EventHub.Infrastructure.Authentication.Providers;
 
 namespace EventHub.Infrastructure.Authentication;
 
-public sealed class FacebookAuthentication : IAuthentication
+public sealed class FacebookAuthenticationAdapter : IAuthentication
 {
     private readonly IFacebookAuthenticationProvider provider;
 
-    public FacebookAuthentication(IFacebookAuthenticationProvider provider)
+    public FacebookAuthenticationAdapter(IFacebookAuthenticationProvider provider)
     {
         this.provider = provider;
     }
